@@ -264,12 +264,10 @@ produce_graphs <- function(model_list, starting_k = 1, model_components, is_AR, 
            width = 3600, height = 1800, units = 'px')
     }
 }
-#just a little wrapper so that report.Rmd doesn't have to generate the plots. It's not super slow, but it's
-#about 5 minutes
-if (do_plots){
-  produce_graphs(sapply(best_models, function(x) x$model), model_components = model_components, is_AR = TRUE, rho_list = sapply(best_models, function(x) x$rho))
-  produce_graphs(best_non_AR_models, model_components = non_AR_model_components, is_AR = FALSE)
-}
+
+ produce_graphs(sapply(best_models, function(x) x$model), model_components = model_components, is_AR = TRUE, rho_list = sapply(best_models, function(x) x$rho))
+ produce_graphs(best_non_AR_models, model_components = non_AR_model_components, is_AR = FALSE)
+
 saveRDS(outs_full, file = 'outputs/aggregated_results.RDS')
 saveRDS(summary_out, file = 'outputs/results_summary.RDS')
 

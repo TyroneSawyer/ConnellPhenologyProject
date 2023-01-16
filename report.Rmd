@@ -3,7 +3,7 @@ title: Reproductive Phenology Autoregressive Generalised Additive Models in a Qu
   Subtropical Rainforest
 author: "Tyrone Sawyer"
 date: "2023-01-09"
-output: html_document
+output: pdf_document
 editor_options: 
   markdown: 
     wrap: 72
@@ -14,11 +14,6 @@ library(knitr)
 library(kableExtra)
 library(tidyr)
 opts_chunk$set(echo = FALSE)
-
-#adjust this setting to cause script to generate plots anew. Takes a small wait
-do_plots = F
-source("plot_creation_script.R", local = knitr::knit_global())
-
 ```
 
 ## Introduction
@@ -373,7 +368,7 @@ which is a valid measure of fit for many, but not all models.
 
 
 ```{r, echo = F, results = 'asis'}
-table_1 <- kable(averages, align = 'rr',digits = 2,format = 'html',
+table_1 <- kable(readRDS('outputs/averages_results.RDS'), align = 'rr',digits = 2,format = 'html',
                  caption = "Table 1: Table of Summary Parameters for Autoregressive and non-Autoregressive GAMs") %>% kable_styling(bootstrap_options = c('striped','hover'))
 
 table_1
@@ -552,7 +547,7 @@ cannot be distinguished by $\chi^2$ tests (such as the HELIGLAB green
 fruits model. Recall, however, that this is a flawed measure).
 
 ```{r, echo = F, results = 'asis'}
-table_2 <- kable(rho_0_models[,1:8], align = 'rr',digits = 2,format = 'html',
+table_2 <- kable(readRDS('outputs/rho_0_models')[,1:8], align = 'rr',digits = 2,format = 'html',
                  caption = "Table 2: Table of the models that have a rho value of 0. Comparing fREML values should be done with care, however, these very large differences are almost certainly significant.") %>% kable_styling(bootstrap_options = c('striped','hover'))
 
 table_2
